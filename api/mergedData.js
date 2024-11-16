@@ -1,5 +1,5 @@
-import { getSingleAuthor } from './authorData';
-import { getBooks, getSingleBook } from './bookData';
+import { getSingleAuthor, getAuthorBooks } from './authorData';
+import { getSingleBook } from './bookData';
 
 // for merged promises
 // TODO: Get data for viewBook
@@ -22,7 +22,7 @@ const getBookDetails = async (firebaseKey) => {
 // get data for viewAuthor
 const getAuthorDetails = async (firebaseKey) => {
   const authorObject = await getSingleAuthor(firebaseKey);
-  const bookObject = await getBooks(authorObject.book_id);
+  const bookObject = await getAuthorBooks(authorObject.firebaseKey);
   return { ...authorObject, bookObject };
 };
 
