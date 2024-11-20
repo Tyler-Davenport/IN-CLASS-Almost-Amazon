@@ -2,7 +2,7 @@
 import { deleteBook, getBooks, getSingleBook } from "../api/bookData";
 import { showBooks } from "../pages/books";
 import addBookForm from "../components/forms/addBookForm";
-import { getAuthors } from "../api/authorData";
+import { getAuthors, getSingleAuthor } from "../api/authorData";
 import { showAuthors } from "../pages/authors";
 import addAuthorForm from "../components/forms/addAuthorForm";
 import { deleteAuthorBooksRelationship, getAuthorDetails, getBookDetails } from "../api/mergedData";
@@ -26,7 +26,7 @@ const domEvents = () => {
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      addBookForm();
+      addBookForm({});
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
@@ -66,6 +66,13 @@ const domEvents = () => {
       addAuthorForm();
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    // TODO: CLICK EVENT EDITING/UPDATING A author
+    if (e.target.id.includes('update-author-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
+      // getSingleBook(firebaseKey).then(addBookForm); // using the callback method
+    }
   });
 };
 
