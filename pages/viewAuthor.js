@@ -25,7 +25,6 @@ const viewAuthor = (obj) => {
       </div>`);
   const detailString = (bookString + domString);
   renderToDOM('#view', detailString);
-  console.warn(obj);
 };
 
 export default viewAuthor;

@@ -9,7 +9,7 @@ import { deleteAuthorBooksRelationship, getAuthorDetails, getBookDetails } from 
 import viewBook from "../pages/viewBook";
 import viewAuthor from "../pages/viewAuthor";
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // TODO: CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
@@ -26,14 +26,14 @@ const domEvents = () => {
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      addBookForm({});
+      addBookForm({}, user);
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
 
-      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
+      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj, user));
       // getSingleBook(firebaseKey).then(addBookForm); // using the callback method
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
