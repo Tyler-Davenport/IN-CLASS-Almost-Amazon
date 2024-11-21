@@ -10,7 +10,7 @@ import { showBooks } from '../pages/books';
 // import getAuthors from '../api/authorData';
 
 const startApp = (user) => {
-  domBuilder(); // BUILD THE DOM
+  domBuilder(user); // BUILD THE DOM
   domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
   formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
